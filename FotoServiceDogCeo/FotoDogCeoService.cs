@@ -8,8 +8,15 @@ public class FotoDogCeoService(IHttpClientFactory httpClientFactory) : IFotoDogS
 {
     private const string RandomDogImageEndpoint = "https://dog.ceo/api/breeds/image/random";
 
+    private string? UrlCache = null;
+
     public async Task<string> GetRandomDogImageUrlAsync()
     {
+        if (UrlCache != null)
+        {
+            return UrlCache;
+        }
+
         var httpClient = httpClientFactory.CreateClient();
         using var responseMessage = await httpClient.GetAsync(RandomDogImageEndpoint);
         responseMessage.EnsureSuccessStatusCode();
@@ -24,7 +31,8 @@ public class FotoDogCeoService(IHttpClientFactory httpClientFactory) : IFotoDogS
             throw new InvalidOperationException("Unexpected response received from Dog CEO API.");
         }
 
-        return response.Message;
+        UrlCache = response.Message;
+        return UrlCache;
     }
 
     private sealed record DogCeoResponse(
