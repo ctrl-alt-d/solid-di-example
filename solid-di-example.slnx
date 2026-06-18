@@ -3,4 +3,5 @@
   <Project Path="FotoServiceDogCeo.IntegrationTests/FotoServiceDogCeo.IntegrationTests.csproj" />
   <Project Path="FotoServiceDogCeo/FotoServiceDogCeo.csproj" />
   <Project Path="FotoServiceHardCoded/FotoServiceHardCoded.csproj" />
+  <Project Path="web/web.csproj" />
 </Solution>
